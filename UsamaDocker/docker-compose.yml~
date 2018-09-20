@@ -1,0 +1,21 @@
+version: '3'
+services:
+    db-node:
+      image: usamatari125/usama-node:2
+      ports:
+        - "3000:3000"
+      depends_on:
+        - "couchdb"
+      links:
+        - "couchdb"
+      environment:
+        - DATABASE_IP=172.17.0.1
+    couchdb:
+      container_name: couchdb
+      image: usamatariq125/usama-couchdb:2
+      ports:
+      - "5984:5984"
+      - "5986:5986"
+      environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password

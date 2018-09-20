@@ -1,0 +1,29 @@
+version: '3'
+services:
+    node-application:
+      container_name: db-node
+      image: db-node-app
+      build: ./
+      command: npm start
+      ports:
+        - "3000:3000"
+      depends_on:
+        - db-couchdb
+      links:
+        - "db-couchdb"
+      environment:
+        - DATABASE_IP=localhost
+    db-couchdb:
+      container_name: db-couchdb
+      image: couchdb
+      ports:
+      - "5984:5984"
+      - "5986:5986"
+      environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://172.17.0.1:5984"]
+        interval: 180s
+        timeout: 10s
+        retries: 5

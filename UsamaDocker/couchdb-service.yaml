@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: couchdb
+  name: couchdb
+spec:
+  ports:
+  - name: "5984"
+    port: 5984
+    targetPort: 5984
+  - name: "5986"
+    port: 5986
+    targetPort: 5986
+  selector:
+    io.kompose.service: couchdb
+status:
+  loadBalancer: {}
