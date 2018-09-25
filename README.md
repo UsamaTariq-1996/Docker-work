@@ -12,3 +12,10 @@
 4. Run `node server.js` to automatically import the data from `test_data.json` and to start an Express app.
 
 5. Navigate to localhost:3000 in your browser to view the chart created with the test data.
+
+I have created create 2 docker images. one image for Web App, second image for CouchDB
+
+Web App docker-image have 3 instances of itself, created by replication controller of kubernetes.
+
+Database docker-image also have 3 instances of itself, created by replication controller of kubernetes.
+
